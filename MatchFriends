@@ -1,0 +1,14 @@
+import pandas as pd
+import numpy as np
+pd.set_option('display.max_rows', 65)
+
+df1 = pd.read_csv('CommonFriend.csv')
+df2 = pd.read_csv('InfluenceFriend.csv')
+
+df3 = pd.merge(df1, df2, on='User')
+
+df3['intersection'] = [list(set(a).intersection(set(b))) for a, b in zip(df3['RecommendedFriends_x'], df3['RecommendedFriends_y'])]
+
+
+print(df3)
+
